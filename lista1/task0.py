@@ -19,3 +19,4 @@ E = (np.mod(np.arange(0,100), np.arange(0,100).reshape(100,1)) == 0) * 1 # 0-ind
 print(A, B, C, D, E, sep='\n')
 
 print(E[1 ,2], E[10,20], E[20,10])
+
