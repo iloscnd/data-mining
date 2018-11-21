@@ -9,9 +9,9 @@ def kmeans(X, k): # X in dxN, k \in int
     C = X[C]
     
     last_assignment=None
-    print(X.shape, C.shape)
+    #print(X.shape, C.shape)
     while True:
-        assignment = np.argmin(cdist(X, C, metric="euclidean"), axis=1)
+        assignment = np.argmin( - 2*X.dot(C.T) + np.sum(X**2, axis=1)[:, np.newaxis] + np.sum(C**2, axis=1)  , axis=1)
 
         if np.array_equal(assignment, last_assignment):
             break
