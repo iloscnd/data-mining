@@ -18,7 +18,7 @@ _, label_normalized, _ = k_means(points_normalized,2)
 _, label_standarized, _ = k_means(points_standarized,2)
 
 
-fig, axes = plt.subplots(2,3, figsize=(20,20))
+fig, axes = plt.subplots(3,3, figsize=(20,20))
 
 axes[0,0].scatter(points[:,0], points[:,1], c=label)
 axes[0,1].scatter(points[:,0], points[:,1], c=label_normalized)
@@ -34,14 +34,28 @@ axes[1,1].scatter(points[:,0], points[:,1], c=birch.labels_)
 birch.fit(points_standarized)
 axes[1,2].scatter(points[:,0], points[:,1], c=birch.labels_)
 
-plt.show()
-
 
 
 #DBScan 
 
+from sklearn.cluster import DBSCAN
+
+dbscan = DBSCAN(eps=2.5)
 
 
+dbscan.fit(points)
+axes[2,0].scatter(points[:,0], points[:,1], c=dbscan.labels_)
+
+#dbscan = DBSCAN(eps=0.05)
+
+dbscan.fit(points_normalized)
+
+axes[2,1].scatter(points[:,0], points[:,1], c=dbscan.labels_)
+
+dbscan.fit(points_standarized)
+axes[2,2].scatter(points[:,0], points[:,1], c=dbscan.labels_)
+
+plt.show()
 
 
 
