@@ -52,7 +52,9 @@ if not birch.root_.is_leaf:
         subNode = sub.child_      
         print(subNode.is_leaf)
 
-        plt.scatter(subNode.centroids_[0], subNode.centroids_[1], c="g", marker='x')
+        color = next(colors)
+        plt.scatter(subNode.centroids_[0], subNode.centroids_[1], c=color, marker='*', s=120)
+        
 
 plt.show()
 

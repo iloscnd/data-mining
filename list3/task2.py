@@ -5,7 +5,7 @@ from kmeans import kmeans
 
 def get_centers(K, d, q):
     # return K points with distances bigger then 
-    return (np.sqrt(q) + 0.01) * np.diag(np.ones(max(K,d)))[:K, :d]
+    return (q/np.sqrt(2)) * np.diag(np.ones(max(K,d)))[:K, :d]
 
 def get_points(N, d, p, mi):
     # p:: K to prawdopodobieństwa pkt 
@@ -24,10 +24,10 @@ def get_points(N, d, p, mi):
 
     points = points + mi.repeat(Ns, axis=0)
     
-    return points
+    return points, Ns
 
 
-N = 100000
+N = 1000
 
 d = 1000
 K = 1000
@@ -39,13 +39,13 @@ q = 10
 p = np.ones(K, dtype=np.float)/K
 mi = get_centers(K,d,q)
 
-points = get_points(N, d, p, mi)
+points, Ns = get_points(N, d, p, mi)
 
 print("done")
 
-c, ass = kmeans(points, K)
+_, ass = kmeans(points, K)
 
 print("kmeans done")
 
-plt.scatter(points[:, 0], points[:,1])
+plt.scatter(points[:, 0], points[:,1], c=ass)
 plt.show()
