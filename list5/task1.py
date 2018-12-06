@@ -17,8 +17,8 @@ def cross_validation(data, target, k):
     errs = 0
     for batch in range(0, num_samples, batch_sz):
 
-        batch_train_X = np.concatenate( (data[batch:],   data[:(batch+batch_sz)]) )
-        batch_train_Y = np.concatenate( (target[batch:], target[:batch + batch_sz]) )
+        batch_train_X = np.concatenate( [data[:batch],   data[(batch+batch_sz):]] )
+        batch_train_Y = np.concatenate( [target[:batch], target[(batch + batch_sz):]] )
 
         batch_test_X = data[batch:batch+batch_sz]
         batch_test_Y = target[batch:batch+batch_sz]
