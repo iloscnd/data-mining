@@ -19,6 +19,18 @@ for line in open("list6/task2Data/retail.dat"):
 assoc = Apriori(X, T, alpha=0.01, debug=True)
 
 
+best_rules = []
+
+for a,b in assoc.rules:
+    conf, lift, suppA, suppB, suppAB = assoc._get_stats(a,b)
+    best_rules.append((lift,conf,len(a)+len(b),suppAB, a,b ))
+
+i = 0
+for lift, conf, _, suppAB, a, b in sorted(best_rules, reverse=True):
+    print("{} => {} \t lift: {}, conf: {}, supp: {}".format(tuple(a), tuple(b), lift, conf, suppAB))
+
+
+
 
 
 

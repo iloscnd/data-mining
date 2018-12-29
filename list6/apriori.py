@@ -105,14 +105,14 @@ class Apriori:
             freq_by_size[k] = list(freq_by_size[k])
 
             if self.debug:
-                print("Sets of size {}: {}".format(k+1, len(freq_by_size[k])))
+                print("Sets of size {}: {}".format(k+1, len(freq_by_size[k])), file=sys.stderr)
 
             if len(freq_by_size[k]) == 0:
                 break
         
         if self.debug:
-            print("Max set length: {}".format(k))
-            print("Number of sets: ", sum([len(sets) for sets in freq_by_size]))
+            print("Max set length: {}".format(k), file=sys.stderr)
+            print("Number of sets: ", sum([len(sets) for sets in freq_by_size]), file=sys.stderr)
 
         return frozenset([item for s in freq_by_size for item in s])
 
